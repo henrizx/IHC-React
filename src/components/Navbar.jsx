@@ -1,20 +1,28 @@
-import { useState } from 'react';
+import { useState } from "react";
 import "../styles/globals.css";
+import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogoClick = () => {
+        navigate("/");
+    };
 
     return (
-        <div className={`navbar ${showMenu ? 'show-menu' : ''}`}>
+        <div className={`navbar ${showMenu ? "show-menu" : ""}`}>
             <div className="header-inner-content">
-                <h1 className="logo">LABUBU <span>E-COMMERCE</span></h1>
+                <h1 className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
+                    LABUBU <span>E-COMMERCE</span>
+                </h1>
                 <nav>
                     <ul>
-                        <li>Home</li>
-                        <li>Produtos</li>
-                        <li>Sobre</li>
-                        <li>Contato</li>
-                        <li>Conta</li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/produtos">Produtos</Link></li>
+                        <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/contato">Contato</Link></li>
+                        <li><Link to="/conta">Conta</Link></li>
                     </ul>
                 </nav>
                 <div className="nav-icon-container">
@@ -29,6 +37,4 @@ const Navbar = () => {
             </div>
         </div>
     );
-};
-
-export default Navbar;
+}
