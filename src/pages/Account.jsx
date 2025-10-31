@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+// src/components/Account.jsx
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "./Account.css";
 
 export default function Account() {
@@ -13,6 +15,7 @@ export default function Account() {
     });
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,17 +25,38 @@ export default function Account() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Dados enviados:", formData);
-        alert(
-            isRegister
-                ? "Cadastro realizado com sucesso!"
-                : "Login efetuado com sucesso!"
-        );
+
+        if (isRegister) {
+            alert("Cadastro realizado com sucesso!");
+            // Aqui você pode fazer o registro real e depois logar
+            login({
+                nome: formData.nome,
+                email: formData.email,
+                tipoUsuario: formData.tipoUsuario
+            });
+            navigate("/");
+        } else {
+            // Verifica se as credenciais são as específicas
+            if (formData.email === "teste@teste.com" && formData.senha === "123456") {
+                alert("Login efetuado com sucesso!");
+
+                // Define o usuário no contexto
+                login({
+                    nome: "Usuário Teste",
+                    email: formData.email,
+                    tipoUsuario: "cliente"
+                });
+
+                navigate("/"); // Redireciona para a home
+            } else {
+                alert("Credenciais inválidas! Tente novamente.");
+            }
+        }
     };
 
     const handleBackToHome = () => {
         navigate("/");
     };
-
     return (
         <div className="account-page">
             {/* Botão de voltar no topo - estilo Mercado Livre */}

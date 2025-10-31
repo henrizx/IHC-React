@@ -1,3 +1,4 @@
+// App.jsx
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import ProductGrid from "./components/ProductGrid";

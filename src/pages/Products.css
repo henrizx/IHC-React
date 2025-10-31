@@ -1,0 +1,812 @@
+.products-page {
+    background-color: #ebebeb;
+    padding: 2rem 0;
+    min-height: 100vh;
+}
+
+/* HEURÍSTICA 1: Skeleton Loading */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    height: 2rem;
+    width: 300px;
+    margin: 0 auto 1rem;
+}
+
+.skeleton-subtitle {
+    height: 1rem;
+    width: 400px;
+    margin: 1rem auto 0;
+}
+
+.skeleton-search {
+    height: 3rem;
+    flex: 1;
+}
+
+.skeleton-filter {
+    height: 3rem;
+    width: 150px;
+}
+
+.skeleton-image {
+    height: 200px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-text.short {
+    width: 60%;
+}
+
+.skeleton-rating {
+    height: 1.5rem;
+    width: 120px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-price {
+    height: 2rem;
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-button {
+    height: 2.5rem;
+    margin-top: 1rem;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* HEURÍSTICA 3: Breadcrumbs */
+.breadcrumbs {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.breadcrumbs a {
+    color: #FF3B30;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.products-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.products-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+/* HEURÍSTICA 5,6,7: Controles de Filtro e Busca */
+.products-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.search-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.search-with-suggestions {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    padding-right: 40px;
+}
+
+.search-input:focus {
+    border-color: #FF3B30;
+    box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.1);
+}
+
+.clear-search {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search:hover {
+    color: #FF3B30;
+    background: #f0f0f0;
+    border-radius: 50%;
+}
+
+.search-suggestions {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.suggestion-tag {
+    background: #f0f0f0;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+.suggestion-tag:hover {
+    background: #FF3B30;
+    color: white;
+}
+
+.filters-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.help-tooltip {
+    cursor: help;
+    font-size: 0.7rem;
+    opacity: 0.6;
+}
+
+.filter-select {
+    padding: 10px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+    min-width: 160px;
+}
+
+.filter-select:focus {
+    border-color: #FF3B30;
+}
+
+/* HEURÍSTICA 3: Botão limpar filtros */
+.clear-filters-btn {
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    color: #666;
+    white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+    background: #f5f5f5;
+    border-color: #FF3B30;
+    color: #FF3B30;
+}
+
+/* HEURÍSTICA 1,6: Status do sistema */
+.products-status {
+    margin-bottom: 1.5rem;
+}
+
+.products-count {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.active-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.active-filter {
+    background: #e3f2fd;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1976d2;
+}
+
+.active-filter button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    color: #666;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active-filter button:hover {
+    color: #ff3b30;
+    background: rgba(255, 59, 48, 0.1);
+    border-radius: 50%;
+}
+
+/* HEURÍSTICA 2,4,8: Grid de Produtos */
+.products-grid {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.cols-4 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Card do Produto */
+.product-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-card:focus {
+    outline: 2px solid #FF3B30;
+    outline-offset: 2px;
+}
+
+.product-card.out-of-stock {
+    opacity: 0.7;
+}
+
+.product-card.featured {
+    border: 2px solid #FFD700;
+}
+
+.product-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.05);
+}
+
+.out-of-stock-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #666;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FF3B30;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.featured-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #FFD700;
+    color: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+    line-height: 1.3;
+}
+
+.product-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-rating {
+    margin-bottom: 1rem;
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.star {
+    color: #ddd;
+    font-size: 1.1rem;
+}
+
+.star.filled {
+    color: #FF3B30;
+}
+
+.rating-value {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.product-specs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.spec-tag {
+    background: #f0f0f0;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.spec-tag.more {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.product-pricing {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.current-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c2c2c;
+}
+
+.buy-button {
+    width: 100%;
+    padding: 12px;
+    background: #FF3B30;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buy-button:hover:not(.disabled) {
+    background: #e0352b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+}
+
+.buy-button.disabled {
+    background: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* HEURÍSTICA 9: Produtos não encontrados */
+.no-products {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.no-products-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.no-products h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c2c2c;
+}
+
+.recovery-suggestions {
+    margin-top: 2rem;
+}
+
+.suggestion-button {
+    padding: 12px 24px;
+    background: #FF3B30;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.suggestion-button:hover {
+    background: #e0352b;
+    transform: translateY(-2px);
+}
+
+/* Acessibilidade - Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .cols-4 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .products-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-section {
+        min-width: auto;
+    }
+
+    .filters-container {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .filter-select {
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .cols-4 {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    .product-name {
+        font-size: 1.1rem;
+    }
+
+    .current-price {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-page {
+        padding: 1rem 0;
+    }
+
+    .products-grid {
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .cols-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .product-card:hover {
+        transform: none;
+    }
+
+    .breadcrumbs {
+        font-size: 0.8rem;
+    }
+
+    .search-suggestions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+/* ===========================
+   CONTATO PAGE
+=========================== */
+.contact-page {
+    background-color: #ebebeb;
+    padding: 2rem 0;
+    min-height: 100vh;
+}
+
+.contact-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.contact-logo {
+    max-width: 100px;
+    margin: 0 auto 1rem auto;
+    display: block;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.contact-form label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #FF3B30;
+    outline: none;
+}
+
+.feedback-bar {
+    margin-top: 1rem;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.feedback-bar.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #c8e5bc;
+}
+
+.feedback-bar.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 600px) {
+    .contact-container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.95rem;
+    }
+
+    .contact-logo {
+        max-width: 80px;
+    }
+}
+
+
+/* ===========================
+   SOBRE PAGE
+=========================== */
+.about-page {
+    background-color: #ebebeb;
+    padding: 2rem 0;
+    min-height: 100vh;
+}
+
+.about-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 800px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.about-logo {
+    max-width: 100px;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+.about-section {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.about-section h2 {
+    font-size: 1.3rem;
+    color: #2c2c2c;
+    margin-bottom: 0.8rem;
+}
+
+.about-section p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.about-list {
+    list-style: disc;
+    margin-left: 1.5rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.link-highlight {
+    color: #FF3B30;
+    text-decoration: none;
+}
+
+.link-highlight:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    .about-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .about-section p,
+    .about-list {
+        font-size: 0.95rem;
+    }
+}
