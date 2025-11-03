@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import './Products.css';
 
 const Products = () => {
@@ -233,6 +235,8 @@ const Products = () => {
     // HEURÍSTICA 1: Loading skeleton
     if (loading) {
         return (
+            <>
+            <Navbar />
             <main className="products-page">
                 <div className="page-inner-content">
                     <div className="products-header">
@@ -263,10 +267,14 @@ const Products = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
+            </>
         );
     }
 
     return (
+        <>
+        <Navbar />
         <main className="products-page">
             <div className="page-inner-content">
                 {/* HEURÍSTICA 3: Breadcrumbs para navegação */}
@@ -480,6 +488,8 @@ const Products = () => {
                 )}
             </div>
         </main>
+        <Footer />
+        </>
     );
 };
 

@@ -1,11 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "./Products.css";
 
 const Sobre = () => {
     const navigate = useNavigate();
 
     return (
+        <>
+        <Navbar />
         <main className="about-page">
             <div className="page-inner-content">
                 {/* Breadcrumbs */}
@@ -80,6 +84,8 @@ const Sobre = () => {
                 </div>
             </div>
         </main>
+        <Footer />
+        </>
     );
 };
 

@@ -1,6 +1,8 @@
 import "../styles/globals.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ExclusiveSection() {
+    const navigate = useNavigate();
     return (
         <div className="gray-background">
             <div className="header-inner-content">
@@ -11,7 +13,7 @@ export default function ExclusiveSection() {
                             Monitore sua pressão arterial e frequência cardíaca continuamente,
                             até durante o sono, com o novo Huawei Watch D2.
                         </p>
-                        <button>Ver agora →</button>
+                        <button onClick={() => navigate('/produto/relogio-digital-laranja')}>Ver agora →</button>
                     </div>
                     <div className="header-bottom-side-right">
                         <img src="/images/exclusive.png" alt="Produto exclusivo" />

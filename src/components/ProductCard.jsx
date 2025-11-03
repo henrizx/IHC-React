@@ -7,7 +7,7 @@ export default function ProductCard({ image, name, price, rate }) {
             <p className="product-name">{name}</p>
             <p className="rate">{rate}</p>
             <p className="product-price">
-                {price} <span>R$</span>
+                <span>R$</span> {price}
             </p>
         </div>
     );

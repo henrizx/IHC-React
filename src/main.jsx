@@ -7,6 +7,7 @@ import Account from './pages/Account.jsx';
 import Sobre from './pages/Sobre.jsx';
 import Contato from './pages/Contact.jsx';
 import Products from './pages/Products.jsx';
+import ProductDetail from './pages/ProductDetail.jsx';
 import App from './App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/sobre" element={<Sobre />} />
           <Route path='/contato' element={<Contato />} />
           <Route path='/produtos' element={<Products />} />
+          <Route path='/produto/:slug' element={<ProductDetail />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

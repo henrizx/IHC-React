@@ -40,7 +40,7 @@ export default function Navbar() {
                 </h1>
                 <nav>
                     <ul>
-                        <li><Link to="/">Home</Link></li>
+                        <li><a href="/">Home</a></li>
                         <li><Link to="/produtos">Produtos</Link></li>
                         <li><Link to="/sobre">Sobre</Link></li>
                         <li><Link to="/contato">Contato</Link></li>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import './Products.css';
 
 const Contato = () => {
@@ -38,89 +40,93 @@ const Contato = () => {
     };
 
     return (
-        <main className="contact-page">
-            <div className="page-inner-content">
-                {/* Heurística 3: Breadcrumbs */}
-                <nav className="breadcrumbs" aria-label="Navegação estrutural">
-                    <a href="/">Home</a> &gt; <span>Contato</span>
-                </nav>
+        <>
+            <Navbar />
+            <main className="contact-page">
+                <div className="page-inner-content">
+                    {/* Heurística 3: Breadcrumbs */}
+                    <nav className="breadcrumbs" aria-label="Navegação estrutural">
+                        <a href="/">Home</a> &gt; <span>Contato</span>
+                    </nav>
 
-                <div className="contact-container">
-                    <img src="/vite.svg" alt="Logo do site" className="about-logo" />
+                    <div className="contact-container">
+                        <img src="/vite.svg" alt="Logo do site" className="about-logo" />
 
-                    <h1 className="section-title">Entre em Contato</h1>
-                    <div className="subtitle-underline"></div>
+                        <h1 className="section-title">Entre em Contato</h1>
+                        <div className="subtitle-underline"></div>
 
-                    {/* Heurística 5: Prevenção de erros */}
-                    <form onSubmit={handleSubmit} className="contact-form" noValidate>
-                        <label htmlFor="name">Nome:</label>
-                        <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            aria-required="true"
-                            placeholder="Digite seu nome completo"
-                        />
+                        {/* Heurística 5: Prevenção de erros */}
+                        <form onSubmit={handleSubmit} className="contact-form" noValidate>
+                            <label htmlFor="name">Nome:</label>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                aria-required="true"
+                                placeholder="Digite seu nome completo"
+                            />
 
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            aria-required="true"
-                            placeholder="exemplo@email.com"
-                        />
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                aria-required="true"
+                                placeholder="exemplo@email.com"
+                            />
 
-                        <label htmlFor="message">Mensagem:</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="4"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                            aria-required="true"
-                            placeholder="Digite sua mensagem aqui..."
-                        ></textarea>
+                            <label htmlFor="message">Mensagem:</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                                aria-required="true"
+                                placeholder="Digite sua mensagem aqui..."
+                            ></textarea>
 
+                            <button
+                                type="submit"
+                                className={`buy-button ${status.loading ? 'disabled' : ''}`}
+                                disabled={status.loading}
+                            >
+                                {status.loading ? 'Enviando...' : 'Enviar Mensagem'}
+                            </button>
+                        </form>
+
+                        {/* Heurística 1: Feedback do sistema */}
+                        {status.success && (
+                            <div className="feedback-bar success" role="alert">
+                                ✅ Mensagem enviada com sucesso!
+                            </div>
+                        )}
+                        {status.error && (
+                            <div className="feedback-bar error" role="alert">
+                                ❌ Ocorreu um erro. Tente novamente.
+                            </div>
+                        )}
+
+                        {/* Heurística 3: Controle do usuário */}
                         <button
-                            type="submit"
-                            className={`buy-button ${status.loading ? 'disabled' : ''}`}
-                            disabled={status.loading}
+                            className="clear-filters-btn"
+                            onClick={() => navigate(-1)}
+                            aria-label="Voltar para a página anterior"
                         >
-                            {status.loading ? 'Enviando...' : 'Enviar Mensagem'}
+                            ← Voltar
                         </button>
-                    </form>
-
-                    {/* Heurística 1: Feedback do sistema */}
-                    {status.success && (
-                        <div className="feedback-bar success" role="alert">
-                            ✅ Mensagem enviada com sucesso!
-                        </div>
-                    )}
-                    {status.error && (
-                        <div className="feedback-bar error" role="alert">
-                            ❌ Ocorreu um erro. Tente novamente.
-                        </div>
-                    )}
-
-                    {/* Heurística 3: Controle do usuário */}
-                    <button
-                        className="clear-filters-btn"
-                        onClick={() => navigate(-1)}
-                        aria-label="Voltar para a página anterior"
-                    >
-                        ← Voltar
-                    </button>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+            <Footer />
+        </>
     );
 };
 
