@@ -10,7 +10,7 @@ const Sobre = () => {
     return (
         <>
         <Navbar />
-        <main className="about-page">
+        <main id="conteudo" className="about-page" role="main">
             <div className="page-inner-content">
                 {/* Breadcrumbs */}
                 <nav className="breadcrumbs" aria-label="Navegação estrutural">

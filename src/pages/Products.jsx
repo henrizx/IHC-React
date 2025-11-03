@@ -237,7 +237,7 @@ const Products = () => {
         return (
             <>
             <Navbar />
-            <main className="products-page">
+            <main id="conteudo" className="products-page" role="main">
                 <div className="page-inner-content">
                     <div className="products-header">
                         <div className="skeleton skeleton-title"></div>
@@ -275,7 +275,7 @@ const Products = () => {
     return (
         <>
         <Navbar />
-        <main className="products-page">
+        <main id="conteudo" className="products-page" role="main">
             <div className="page-inner-content">
                 {/* HEURÍSTICA 3: Breadcrumbs para navegação */}
                 <nav className="breadcrumbs" aria-label="Navegação estrutural">

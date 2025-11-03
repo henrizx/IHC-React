@@ -64,11 +64,13 @@ function App() {
   return (
     <>
       <Navbar />
-      <Header />
-      <ProductGrid title="Produtos Selecionados" products={produtosSelecionados} />
-      <ProductGrid title="Últimos Produtos" products={ultimosProdutos} />
-      <ExclusiveSection />
-      <Testimonials />
+      <main id="conteudo" role="main">
+        <Header />
+        <ProductGrid title="Produtos Selecionados" products={produtosSelecionados} />
+        <ProductGrid title="Últimos Produtos" products={ultimosProdutos} />
+        <ExclusiveSection />
+        <Testimonials />
+      </main>
       <Footer />
     </>
   );

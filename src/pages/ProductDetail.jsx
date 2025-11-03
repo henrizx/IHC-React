@@ -42,7 +42,7 @@ export default function ProductDetail() {
     return (
         <>
             <Navbar />
-            <main className="contact-page">
+            <main id="conteudo" className="contact-page" role="main">
                 <div className="page-inner-content">
                     <nav className="breadcrumbs" aria-label="Navegação estrutural">
                         <a href="/">Home</a> &gt; <a href="/produtos">Produtos</a> &gt; <span>{product.title}</span>

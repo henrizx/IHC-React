@@ -9,6 +9,64 @@ body {
     font-family: 'arial';
 }
 
+/* Link de pular para o conteúdo (WCAG) */
+.skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px 12px;
+    z-index: 1000;
+}
+
+.skip-to-content:focus {
+    left: 8px;
+    top: 8px;
+    outline: 2px solid #FFD700;
+}
+
+/* Foco visível global */
+:focus-visible {
+    outline: 3px solid #FF3B30;
+    outline-offset: 2px;
+}
+
+/* Alto contraste acessível */
+.high-contrast body,
+.high-contrast main,
+.high-contrast header,
+.high-contrast footer,
+.high-contrast .product-card,
+.high-contrast .account-container,
+.high-contrast .contact-container,
+.high-contrast .about-container {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.high-contrast a {
+    color: #00e5ff !important;
+}
+
+.high-contrast .buy-button {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+.high-contrast .clear-filters-btn {
+    border-color: #fff !important;
+    color: #fff !important;
+}
+
+/* Reduzir animações para quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 .header-inner-content {
     max-width: 1300px;
     margin-left: auto;
@@ -76,6 +134,30 @@ nav ul li:hover {
 
 .menu-button {
     display: none;
+}
+
+/* Controles de acessibilidade compactos no navbar */
+.a11y-controls {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    margin-right: .5rem;
+}
+
+.a11y-btn {
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-size: .8rem;
+    cursor: pointer;
+}
+
+.a11y-btn:hover,
+.a11y-btn.active {
+    background: rgba(255, 59, 48, .25);
+    border-color: #FF3B30;
 }
 
 header {

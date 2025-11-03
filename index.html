@@ -1,13 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2c2c2c" />
     <title>projeto-nidia-react</title>
   </head>
   <body>
+    <a href="#conteudo" class="skip-to-content">Pular para o conteúdo principal</a>
     <div id="root"></div>
+    <div vw class="enabled">
+      <div vw-access-button class="active" aria-label="Ativar tradutor VLibras"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://cdn.vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>window.VLibras && new window.VLibras.Widget('https://cdn.vlibras.gov.br/app');</script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

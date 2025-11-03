@@ -1,5 +1,5 @@
 // src/components/Account.jsx
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Navbar from "../components/Navbar";
@@ -16,12 +16,39 @@ export default function Account() {
         cpfCnpj: "",
         tipoUsuario: "cliente",
     });
+    const [cpfCnpjError, setCpfCnpjError] = useState("");
 
     const navigate = useNavigate();
     const { login } = useAuth();
 
+    const onlyDigits = (value) => value.replace(/\D/g, "");
+
+    const formatCpf = (digits) => {
+        return digits
+            .replace(/(\d{3})(\d)/, "$1.$2")
+            .replace(/(\d{3})(\d)/, "$1.$2")
+            .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    };
+
+    const formatCnpj = (digits) => {
+        return digits
+            .replace(/(\d{2})(\d)/, "$1.$2")
+            .replace(/(\d{3})(\d)/, "$1.$2")
+            .replace(/(\d{3})(\d)/, "$1/$2")
+            .replace(/(\d{4})(\d{1,2})$/, "$1-$2");
+    };
+
+    const isValidCpfCnpj = (digits) => digits.length === 11 || digits.length === 14;
+
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if (name === "cpfCnpj") {
+            const digits = onlyDigits(value).slice(0, 14);
+            const formatted = digits.length > 11 ? formatCnpj(digits) : formatCpf(digits);
+            setFormData({ ...formData, [name]: formatted });
+            setCpfCnpjError(digits.length === 0 || isValidCpfCnpj(digits) ? "" : "Digite um CPF (11) ou CNPJ (14) válido");
+            return;
+        }
         setFormData({ ...formData, [name]: value });
     };
 
@@ -30,6 +57,11 @@ export default function Account() {
         console.log("Dados enviados:", formData);
 
         if (isRegister) {
+            const digits = onlyDigits(formData.cpfCnpj);
+            if (!isValidCpfCnpj(digits)) {
+                setCpfCnpjError("CPF/CNPJ inválido. Use apenas números: 11 (CPF) ou 14 (CNPJ).");
+                return;
+            }
             alert("Cadastro realizado com sucesso!");
             // Aqui você pode fazer o registro real e depois logar
             login({
@@ -60,7 +92,7 @@ export default function Account() {
     return (
         <>
             <Navbar />
-            <main className="contact-page">
+            <main id="conteudo" className="contact-page" role="main">
                 <div className="page-inner-content">
                     <nav className="breadcrumbs" aria-label="Navegação estrutural">
                         <a href="/">Home</a> &gt; <span>Conta</span>
@@ -106,7 +138,13 @@ export default function Account() {
                                                 value={formData.cpfCnpj}
                                                 onChange={handleChange}
                                                 required
+                                                inputMode="numeric"
+                                                aria-invalid={!!cpfCnpjError}
+                                                aria-describedby="cpfCnpj-help"
                                             />
+                                            <small id="cpfCnpj-help" style={{ color: cpfCnpjError ? '#c62828' : '#666' }}>
+                                                {cpfCnpjError || "Apenas números. Formatação aplicada automaticamente."}
+                                            </small>
                                         </div>
 
                                         <div className="form-group">

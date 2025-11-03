@@ -42,7 +42,7 @@ const Contato = () => {
     return (
         <>
             <Navbar />
-            <main className="contact-page">
+            <main id="conteudo" className="contact-page" role="main">
                 <div className="page-inner-content">
                     {/* Heurística 3: Breadcrumbs */}
                     <nav className="breadcrumbs" aria-label="Navegação estrutural">
