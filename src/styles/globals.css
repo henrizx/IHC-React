@@ -764,3 +764,10 @@ nav ul li a {
 .user-dropdown.active~.user-dropdown-overlay {
     display: block;
 }
+
+/* Garantir VLibras acima de tudo */
+[vw],
+[vw-plugin-wrapper],
+.vw-plugin-top-wrapper {
+    z-index: 2147483000 !important;
+}

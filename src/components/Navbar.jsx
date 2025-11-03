@@ -10,6 +10,7 @@ export default function Navbar() {
     const [isHighContrast, setIsHighContrast] = useState(false);
     const [fontScale, setFontScale] = useState(1);
     const [readerOn, setReaderOn] = useState(false);
+    const [librasOn, setLibrasOn] = useState(false);
     const navigate = useNavigate();
     const { user, logout } = useAuth();
 
@@ -76,6 +77,46 @@ export default function Navbar() {
         };
     }, [readerOn]);
 
+    // Libras por foco/hover (melhor esforço com VLibras)
+    useEffect(() => {
+        if (!librasOn) return;
+        const ensureWidget = () => {
+            try {
+                const btn = document.querySelector('[vw-access-button]');
+                if (btn) {
+                    if (!btn.classList.contains('active')) btn.classList.add('active');
+                    // tenta abrir o painel do avatar
+                    btn.click();
+                    setTimeout(() => { try { btn.click(); } catch { } }, 600);
+                }
+            } catch { }
+        };
+        const selectNodeText = (node) => {
+            try {
+                const range = document.createRange();
+                range.selectNodeContents(node);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                document.dispatchEvent(new Event('selectionchange'));
+            } catch { }
+        };
+        const handler = (e) => {
+            const el = e.target.closest('a,button,[role="button"],label,h1,h2,h3,h4,h5,h6,p,li,span,[aria-label]');
+            if (!el) return;
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+            ensureWidget();
+            selectNodeText(el);
+        };
+        document.addEventListener('mouseover', handler, true);
+        document.addEventListener('focusin', handler, true);
+        return () => {
+            document.removeEventListener('mouseover', handler, true);
+            document.removeEventListener('focusin', handler, true);
+            try { const sel = window.getSelection(); sel && sel.removeAllRanges(); } catch { }
+        };
+    }, [librasOn]);
+
     const toggleUserDropdown = () => {
         setShowUserDropdown(!showUserDropdown);
     };
@@ -112,6 +153,7 @@ export default function Navbar() {
                             <button className="a11y-btn" aria-label="Diminuir fonte" title="Diminuir fonte" onClick={() => setFontScale(Math.max(0.85, +(fontScale - 0.1).toFixed(2)))}>A-</button>
                             <button className="a11y-btn" aria-label="Aumentar fonte" title="Aumentar fonte" onClick={() => setFontScale(Math.min(1.4, +(fontScale + 0.1).toFixed(2)))}>A+</button>
                             <button className={`a11y-btn ${readerOn ? 'active' : ''}`} aria-pressed={readerOn} aria-label="Alternar leitor de tela por voz" title="Leitor por voz" onClick={() => setReaderOn(!readerOn)}>🔊</button>
+                            <button className={`a11y-btn ${librasOn ? 'active' : ''}`} aria-pressed={librasOn} aria-label="Alternar Libras por foco" title="Libras por foco" onClick={() => setLibrasOn(!librasOn)}>🤟</button>
                         </li>
                         <li className="user-menu-item">
                             {user ? (
