@@ -8,8 +8,12 @@ export default function Footer() {
                     <p>Baixe nossa aplicação</p>
                     <p>Disponível para Android e iOS</p>
                     <div>
-                        <img src="/images/app-store.png" alt="App Store" />
-                        <img src="/images/play-store.png" alt="Play Store" />
+                        <a href="https://www.youtube.com/watch?v=2gMaS7x_OBw" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/app-store.png" alt="App Store" />
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=rQzSiiRe6YM" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/play-store.png" alt="Play Store" />
+                        </a>
                     </div>
                 </div>
 

@@ -127,8 +127,7 @@ nav ul li {
 
 nav ul li:hover {
     transform: translateY(-5px);
-    transition: all 0.3s ease-in-out;
-    font-weight: bold;
+    transition: all 0.4s ease-in-out;
     color: #FF3B30;
 }
 
