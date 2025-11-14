@@ -486,6 +486,17 @@ const Products = () => {
                         </div>
                     </div>
                 )}
+
+                {/* Heurística 3: Controle do usuário - Botão de voltar */}
+                <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                    <button
+                        className="clear-filters-btn"
+                        onClick={() => navigate(-1)}
+                        aria-label="Voltar para a página anterior"
+                    >
+                        ← Voltar
+                    </button>
+                </div>
             </div>
         </main>
         <Footer />
